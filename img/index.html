@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>女神私密写真</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>女神私密写真</h1>
+        </header>
+
+        <main>
+            <section class="carousel-section">
+                <div class="carousel-header">
+                    <div class="spacer"></div>
+                    <h2 id="current-album-name" class="album-title">小野猫</h2>
+                    <button id="album-list-btn" class="album-list-btn">查看相册</button>
+                </div>
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <!-- 轮播图内容将通过JavaScript动态加载 -->
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn prev-btn">&lt;</button>
+                        <button class="carousel-btn next-btn">&gt;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 最新照片模块 -->
+            <section class="latest-photos-section">
+                <h2>最新照片</h2>
+                <div class="latest-photos-container">
+                    <div class="photo-item">
+                        <img src="img/1.jpg17575802831_HD.jpeg" alt="小野猫1" loading="lazy">
+                    </div>
+                    <div class="photo-item">
+                        <img src="img/1.jpg17575802882_HD.jpeg" alt="小野猫2" loading="lazy">
+                    </div>
+                    <div class="photo-item">
+                        <img src="img/1.jpg17575802923_HD.jpeg" alt="小野猫3" loading="lazy">
+                    </div>
+                    <div class="photo-item">
+                        <img src="img/1.jpg17575802964_HD.jpeg" alt="小野猫4" loading="lazy">
+                    </div>
+                    <div class="photo-item">
+                        <img src="img/1.jpg17575803015_HD.jpeg" alt="小野猫5" loading="lazy">
+                    </div>
+                    <div class="photo-item">
+                        <img src="img/1.jpg17575803056_HD.jpeg" alt="小野猫6" loading="lazy">
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 相册列表模态框 -->
+    <div id="album-modal" class="album-modal">
+        <div class="album-modal-content">
+            <span class="album-close-btn">&times;</span>
+            <h2>相册列表</h2>
+            <div class="album-list">
+                <div class="album-item" data-album="小野猫">
+                    <img src="img/1.jpg17575802831_HD.jpeg" alt="小野猫" loading="lazy">
+                    <p>小野猫</p>
+                </div>
+                <div class="album-item" data-album="新春快乐">
+                    <img src="img2/1.jpg17575801252_HD.jpeg" alt="新春快乐" loading="lazy">
+                    <p>新春快乐</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 相册照片模态框 -->
+    <div id="photos-modal" class="photos-modal">
+        <div class="photos-modal-content">
+            <div class="modal-header">
+                <button class="back-to-albums-btn">返回相册列表</button>
+                <h2 id="album-title">相册照片</h2>
+            </div>
+            <div class="album-photos-container">
+                <!-- 照片将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

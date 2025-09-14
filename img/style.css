@@ -1,0 +1,794 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部样式 */
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    background: linear-gradient(90deg, #00dbde, #fc00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+header h1::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #00dbde, #fc00ff);
+    border-radius: 2px;
+    margin: 15px auto 0;
+    box-shadow: 0 0 10px rgba(0, 219, 222, 0.5);
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.album-list-btn {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.album-list-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.album-list-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.album-list-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(106, 17, 203, 0.5);
+}
+
+.album-list-btn:active {
+    transform: translateY(1px);
+}
+
+/* 轮播图区域 */
+.carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.carousel-header .spacer {
+    width: 80px; /* 与按钮宽度大致相等，用于平衡布局 */
+}
+
+.carousel-header .album-title {
+    font-size: 2.2rem;
+    background: linear-gradient(90deg, #00dbde, #fc00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(0, 219, 222, 0.5);
+    margin: 0;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.carousel-header .album-title:hover {
+    transform: scale(1.05);
+}
+
+.carousel-section {
+    margin-bottom: 50px;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 219, 222, 0.3);
+    height: auto;
+    margin: 0 auto 30px auto;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px 0;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+    /* 启用硬件加速 */
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.carousel-wrapper {
+    display: flex;
+    height: auto;
+    padding: 0 20px;
+    /* 启用硬件加速 */
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.carousel-wrapper img {
+    width: calc(33.333% - 20px); /* 每张图片占1/3宽度减去固定间距 */
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    border: 2px solid rgba(0, 219, 222, 0.3);
+    max-height: 500px;
+    margin: 0 10px; /* 设置固定间距为20px（左右各10px） */
+    flex-shrink: 0; /* 防止图片在容器中收缩 */
+    /* 启用硬件加速 */
+    transform: translateZ(0);
+    will-change: transform;
+    object-position: center;
+}
+
+/* 轮播图动画 */
+@keyframes carouselSlide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.carousel-wrapper.carousel-sliding {
+    animation: carouselSlide linear infinite;
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0;
+    box-sizing: border-box;
+    left: -60px; /* 将按钮移到轮播图外部 */
+    width: calc(100% + 120px); /* 扩展宽度以覆盖外部区域 */
+    z-index: 20; /* 确保按钮在最上层 */
+}
+
+.carousel-btn {
+    background: linear-gradient(135deg, #00dbde, #fc00ff);
+    border: none;
+    color: white;
+    width: 60px; /* 增大按钮尺寸 */
+    height: 60px; /* 增大按钮尺寸 */
+    border-radius: 50%;
+    font-size: 2rem; /* 增大字体 */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(0, 219, 222, 0.5);
+    z-index: 20; /* 确保按钮在最上层 */
+    opacity: 0.8; /* 添加透明度 */
+    /* 启用硬件加速 */
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.carousel-btn:hover {
+    background: linear-gradient(135deg, #fc00ff, #00dbde);
+    transform: scale(1.2);
+    box-shadow: 0 0 25px rgba(0, 219, 222, 0.9);
+    opacity: 1; /* 悬停时完全不透明 */
+}
+
+/* 最新照片模块 */
+.latest-photos-section {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.latest-photos-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #00dbde;
+    text-shadow: 0 0 10px rgba(0, 219, 222, 0.5);
+}
+
+.latest-photos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.photo-item {
+    width: calc(33.333% - 25px);
+    margin-bottom: 25px;
+    box-sizing: border-box;
+}
+
+.photo-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    border: 2px solid rgba(0, 219, 222, 0.3);
+    cursor: pointer;
+    display: block;
+}
+
+.photo-item img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 219, 222, 0.8);
+    border-color: rgba(0, 219, 222, 0.8);
+}
+
+/* 大图模态框 */
+.photo-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.photo-modal .modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    margin: 20px;
+}
+
+.photo-modal .modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 219, 222, 0.5);
+}
+
+.close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #00dbde;
+}
+
+/* 相册列表模态框 */
+.album-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.album-modal-content {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    background: rgba(30, 30, 46, 0.95);
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: 0 0 30px rgba(0, 219, 222, 0.5);
+    border: 1px solid rgba(0, 219, 222, 0.3);
+    margin: 20px;
+    box-sizing: border-box;
+}
+
+.album-modal-content h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #00dbde;
+    text-shadow: 0 0 10px rgba(0, 219, 222, 0.5);
+}
+
+.album-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 35px;
+}
+
+.album-item {
+    width: calc(33.333% - 35px);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.album-item:hover {
+    transform: scale(1.05);
+    background: rgba(0, 219, 222, 0.1);
+}
+
+.album-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(0, 219, 222, 0.3);
+}
+
+.album-item p {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.album-close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.album-close-btn:hover {
+    color: #00dbde;
+}
+
+/* 相册照片模态框 */
+.photos-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    backdrop-filter: blur(5px);
+}
+
+.photos-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    background: rgba(30, 30, 46, 0.95);
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: 0 0 30px rgba(0, 219, 222, 0.5);
+    border: 1px solid rgba(0, 219, 222, 0.3);
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: 20px;
+    box-sizing: border-box;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.back-to-albums-btn {
+    background: linear-gradient(135deg, #00dbde, #fc00ff);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 219, 222, 0.5);
+}
+
+.back-to-albums-btn:hover {
+    background: linear-gradient(135deg, #fc00ff, #00dbde);
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(0, 219, 222, 0.9);
+}
+
+.photos-modal-content h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #00dbde;
+    text-shadow: 0 0 10px rgba(0, 219, 222, 0.5);
+    flex-grow: 1;
+}
+
+.album-photos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.album-photo-item {
+    width: calc(33.333% - 25px);
+    margin-bottom: 25px;
+    box-sizing: border-box;
+}
+
+.album-photo-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    border: 2px solid rgba(0, 219, 222, 0.3);
+    cursor: pointer;
+    display: block;
+}
+
+.album-photo-item img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 219, 222, 0.8);
+    border-color: rgba(0, 219, 222, 0.8);
+}
+
+/* 相册内图片统一高度 */
+.album-photo-item.uniform-height img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    border: 2px solid rgba(0, 219, 222, 0.3);
+    cursor: pointer;
+}
+
+/* 相册内图片放大覆盖层 */
+.album-image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4000;
+    backdrop-filter: blur(5px);
+}
+
+.album-image-overlay-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    margin: 20px;
+}
+
+.album-image-overlay-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 219, 222, 0.5);
+    border: 2px solid rgba(0, 219, 222, 0.3);
+}
+
+/* 动画关键帧 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes borderAnimation {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(106, 17, 203, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(106, 17, 203, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(106, 17, 203, 0); }
+}
+
+/* 应用动画 */
+header, .latest-photos-section {
+    animation: fadeIn 1s ease-out;
+}
+
+.photo-item img {
+    animation: fadeIn 1s ease-out;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header {
+        padding: 20px 0;
+        margin-bottom: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .carousel-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+    }
+    
+    .carousel-header .spacer {
+        width: 70px;
+    }
+    
+    .carousel-header .album-title {
+        font-size: 1.8rem;
+        text-align: center;
+        flex: 1;
+    }
+    
+    .album-list-btn {
+        align-self: center;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .carousel-section {
+        margin-bottom: 30px;
+    }
+    
+    .carousel-container {
+        margin: 0 0 25px 0;
+        padding: 10px 0;
+    }
+    
+    .carousel-wrapper {
+        padding: 0;
+    }
+    
+    .carousel-wrapper img {
+        width: 95%;
+        max-height: 350px;
+        margin: 10px auto; /* 在移动端调整间距，居中显示 */
+        object-fit: contain;
+    }
+    
+    .latest-photos-section {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .latest-photos-container {
+        gap: 15px;
+    }
+    
+    .photo-item {
+        width: calc(50% - 15px);
+        margin-bottom: 15px;
+    }
+    
+    .album-list {
+        gap: 20px;
+    }
+    
+    .album-item {
+        width: calc(50% - 20px);
+        padding: 15px;
+    }
+    
+    .album-item img {
+        height: 150px;
+    }
+    
+    .album-photo-item {
+        width: calc(50% - 15px);
+        margin-bottom: 15px;
+    }
+    
+    .album-photo-item img {
+        height: 200px;
+    }
+    
+    .modal-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+    
+    .back-to-albums-btn {
+        align-self: flex-start;
+    }
+    
+    /* 调整最新照片模块，消除左右空白 */
+    .latest-photos-container {
+        padding: 0;
+        margin: 0 -5px;
+    }
+    
+    .photo-item {
+        padding: 0 5px;
+        margin-bottom: 10px;
+    }
+    
+    /* 调整轮播图控制按钮在移动端的位置 */
+    .carousel-controls {
+        left: -40px;
+        width: calc(100% + 80px);
+    }
+    
+    .carousel-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .album-modal-content, .photos-modal-content {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-item, .album-item, .album-photo-item {
+        width: 100%;
+    }
+    
+    .album-modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .photos-modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .carousel-wrapper img {
+        width: 98%;
+        max-height: 400px;
+        margin: 10px auto;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .album-switch-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        min-width: 70px;
+    }
+    
+    /* 在小屏幕设备上进一步优化最新照片模块 */
+    .latest-photos-container {
+        margin: 0;
+    }
+    
+    .photo-item {
+        padding: 0;
+    }
+    
+    /* 进一步调整轮播图控制按钮在小屏幕上的位置 */
+    .carousel-controls {
+        left: -30px;
+        width: calc(100% + 60px);
+    }
+    
+    .album-switcher {
+        gap: 5px;
+        padding: 3px;
+    }
+    
+    .album-modal-content, .photos-modal-content {
+        padding: 15px;
+    }
+}
